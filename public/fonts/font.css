@@ -1,0 +1,167 @@
+@font-face {
+    font-family: 'SilveradoMediumCondensedTab';
+    src: local('SilveradoMediumCondensedTab'),
+        url(/fonts/SilveradoMediumCondensedTab.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoMediumTab';
+    src: local('SilveradoMediumTab'),
+        url(/fonts/SilveradoMediumTab.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoMediumCondensed';
+    src: local('SilveradoMediumCondensed'),
+        url(/fonts/SilveradoMediumCondensed.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoMedium';
+    src: local('SilveradoMedium'),
+url(/fonts/SilveradoMedium.ttf) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoExtraBoldOldStyleFigures';
+    src: local('SilveradoExtraBoldOldStyleFigures'),
+        url(/fonts/SilveradoExtraBoldOldStyleFigures.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoLightCondensedTab';
+    src: local('SilveradoLightCondensedTab'),
+        url(/fonts/SilveradoLightCondensedTab.ttf) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoLightTab';
+    src: local('SilveradoLightTab'),
+        url(/fonts/SilveradoLightTab.ttf) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoLightCondensed';
+    src: local('SilveradoLightCondensed'),
+        url(/fonts/SilveradoLightCondensed.ttf) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoLight';
+    src: local('SilveradoLight'),
+        url(/fonts/SilveradoLight.ttf) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoExtraBoldCondensedTab';
+    src: local('SilveradoExtraBoldCondensedTab'),
+        url(/fonts/SilveradoExtraBoldCondensedTab.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoBoldOldStyleFigures';
+    src: local('SilveradoBoldOldStyleFigures'),
+        url(/fonts/SilveradoBoldOldStyleFigures.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoExtraBold';
+    src: local('SilveradoExtraBold'),
+        url(/fonts/SilveradoExtraBold.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoBoldCondensedTab';
+    src: local('SilveradoBoldCondensedTab'),
+        url(/fonts/SilveradoBoldCondensedTab.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SilveradoBold';
+    src: local('SilveradoBold'),
+        url(/fonts/SilveradoBold.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    font-weight: 400;
+    src: url(/fonts/NotoSans-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    font-weight: 600;
+    src: url(/fonts/NotoSans-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    font-weight: 300;
+    src: url(/fonts/NotoSans-Light.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    font-weight: 200;
+    src: url(/fonts/NotoSans-Thin.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    font-weight: 700;
+    src: url(/fonts/NotoSans-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    font-weight: 800;
+    src: url(/fonts/NotoSans-ExtraBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    font-weight: 900;
+    src: url(/fonts/NotoSans-Black.ttf) format('truetype');
+}
