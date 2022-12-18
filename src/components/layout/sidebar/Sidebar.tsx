@@ -6,13 +6,17 @@ import {
     PlusCircleIcon,
     HeartIcon,
     RssIcon,
+    ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/outline";
+import { signOut, useSession } from "next-auth/react";
+import { SessionWithToken } from "@/src/commons/types";
 
 export interface ISidebarProps {
     children: ReactNode;
 }
 
 export default function Sidebar({ children }: ISidebarProps) {
+    const { data: session } = useSession();
     return (
         <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -28,6 +32,10 @@ export default function Sidebar({ children }: ISidebarProps) {
             <div className="drawer-side scollbar-hidden border-r border-neutral border-opacity-20">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="flex flex-col gap-4 p-4 w-60 bg-base-100 text-base-content">
+                    {session?.user && (
+                        <div className="truncate">{session.user.name}</div>
+                    )}
+
                     <SidebarItem
                         icon={<HomeIcon className="w-5 h-5" />}
                         title={"Home"}
@@ -52,6 +60,13 @@ export default function Sidebar({ children }: ISidebarProps) {
                         icon={<RssIcon className="w-5 h-5" />}
                         title={"Your episodes"}
                     />
+                    <SidebarItem
+                        icon={<ArrowLeftOnRectangleIcon className="w-5 h-5" />}
+                        title={"Logout"}
+                        onClick={() => {
+                            signOut();
+                        }}
+                    />
                 </ul>
             </div>
         </div>
@@ -66,11 +81,15 @@ export default function Sidebar({ children }: ISidebarProps) {
 export interface ISidebarItemProps {
     title: string;
     icon: ReactNode;
+    onClick?: () => void;
 }
 
-export function SidebarItem({ icon, title }: ISidebarItemProps) {
+export function SidebarItem({ icon, title, onClick }: ISidebarItemProps) {
     return (
-        <li className="flex gap-1 items-center text-neutral  hover:text-accent cursor-pointer space-x-2">
+        <li
+            onClick={() => onClick && onClick()}
+            className="flex gap-1 items-center text-neutral  hover:text-accent cursor-pointer space-x-2"
+        >
             {icon} <span>{title}</span>
         </li>
     );

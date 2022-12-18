@@ -1,0 +1,7 @@
+- Next auth dùng provider là spotify để login lần đầu
+
+* Trong lần đầu login với spotify, sẽ lấy được các thông tin về authentication của spotify như token, refresh token, trong account của hàm callback next auth các lần sau nếu check login như sử dụng useSession của nextAuth sẽ không lấy được các thông tin này
+  => Để lưu trữ các thông tin này thì custom token lưu vào session trong hàm callback jwt của next auth thêm các thông tin authentication về token của spotify, các xử lý này đều làm trên phía server side
+
+* Session để authen giữa client và server của next js chỉ trả các thông tin cơ bản của user, thiếu thông tin về token để gọi các api liên quan của spotify api
+    => Cần phải custom hàm callback session của next auth để lưu thêm thông tin token của spotify trong phía client
