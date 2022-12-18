@@ -798,7 +798,7 @@ nanoid@^3.3.4:
 
 next-auth@^4.18.6:
   version "4.18.6"
-  resolved "https://registry.npmjs.org/next-auth/-/next-auth-4.18.6.tgz"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.18.6.tgz#c23d02894a09e12d210cfb7041afa43fb1e897a4"
   integrity sha512-0TQwbq5X9Jyd1wUVYUoyvHJh4JWXeW9UOcMEl245Er/Y5vsSbyGJHt8M7xjRMzk9mORVMYehoMdERgyiq/jCgA==
   dependencies:
     "@babel/runtime" "^7.16.3"
