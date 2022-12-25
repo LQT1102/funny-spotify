@@ -3,6 +3,7 @@ import ThemeSettingWithNoSSR from "@/src/components/base/ThemeSetting/ThemeSetti
 import { PublicSiteLayout } from "@/src/components/layout/siteLayout";
 import { NextPage } from "next";
 import Head from "next/head";
+import PlaylistContextProvider from "../contexts/PlaylistContext";
 import useTranslations from "../utils/translation";
 
 export interface ISwapPageProps {}

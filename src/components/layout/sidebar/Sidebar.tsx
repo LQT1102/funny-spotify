@@ -1,15 +1,17 @@
-import React, { ReactNode } from "react";
+import { usePlaylistContext } from "@/src/contexts/PlaylistContext";
+import useSpotify from "@/src/hooks/useSpotify";
 import {
+    ArrowLeftOnRectangleIcon,
+    FolderIcon,
+    HeartIcon,
     HomeIcon,
     MagnifyingGlassIcon,
-    FolderIcon,
+    MusicalNoteIcon,
     PlusCircleIcon,
-    HeartIcon,
     RssIcon,
-    ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import { signOut, useSession } from "next-auth/react";
-import { SessionWithToken } from "@/src/commons/types";
+import { ReactNode, useMemo } from "react";
 
 export interface ISidebarProps {
     children: ReactNode;
@@ -17,6 +19,37 @@ export interface ISidebarProps {
 
 export default function Sidebar({ children }: ISidebarProps) {
     const { data: session } = useSession();
+    const spotifyApi = useSpotify();
+
+    const {
+        playlistContextState: { playlists },
+        updatePlaylistContextState,
+    } = usePlaylistContext();
+
+    const MENU_ITEMS = useMemo(() => {
+        return [
+            { icon: <HomeIcon className="w-5 h-5" />, title: "Home" },
+            {
+                icon: <MagnifyingGlassIcon className="w-5 h-5" />,
+                title: "Search",
+            },
+            { icon: <FolderIcon className="w-5 h-5" />, title: "Your library" },
+            {
+                icon: <PlusCircleIcon className="w-5 h-5" />,
+                title: "Create Playlist",
+            },
+            { icon: <HeartIcon className="w-5 h-5" />, title: "Liked Songs" },
+            { icon: <RssIcon className="w-5 h-5" />, title: "Your episodes" },
+        ];
+    }, []);
+
+    const setSelectedPlaylist = async (playListId: string) => {
+        const playlistResponse = await spotifyApi.getPlaylist(playListId);
+        updatePlaylistContextState({
+            selectedPlaylistId: playListId,
+            selectedPlaylist: playlistResponse.body,
+        });
+    };
     return (
         <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -35,31 +68,16 @@ export default function Sidebar({ children }: ISidebarProps) {
                     {session?.user && (
                         <div className="truncate">{session.user.name}</div>
                     )}
+                    {MENU_ITEMS.map((item) => {
+                        return (
+                            <SidebarItem
+                                key={item.title}
+                                icon={item.icon}
+                                title={item.title}
+                            />
+                        );
+                    })}
 
-                    <SidebarItem
-                        icon={<HomeIcon className="w-5 h-5" />}
-                        title={"Home"}
-                    />
-                    <SidebarItem
-                        icon={<MagnifyingGlassIcon className="w-5 h-5" />}
-                        title={"Search"}
-                    />
-                    <SidebarItem
-                        icon={<FolderIcon className="w-5 h-5" />}
-                        title={"Your library"}
-                    />
-                    <SidebarItem
-                        icon={<PlusCircleIcon className="w-5 h-5" />}
-                        title={"Create Playlist"}
-                    />
-                    <SidebarItem
-                        icon={<HeartIcon className="w-5 h-5" />}
-                        title={"Liked Songs"}
-                    />
-                    <SidebarItem
-                        icon={<RssIcon className="w-5 h-5" />}
-                        title={"Your episodes"}
-                    />
                     <SidebarItem
                         icon={<ArrowLeftOnRectangleIcon className="w-5 h-5" />}
                         title={"Logout"}
@@ -67,14 +85,22 @@ export default function Sidebar({ children }: ISidebarProps) {
                             signOut();
                         }}
                     />
+
+                    <div className="divider m-0" />
+
+                    {playlists.map(({ id, name }) => (
+                        <SidebarItem
+                            key={id}
+                            icon={<MusicalNoteIcon className="w-5 h-5" />}
+                            title={name}
+                            onClick={async () => {
+                                await setSelectedPlaylist(id);
+                            }}
+                        />
+                    ))}
                 </ul>
             </div>
         </div>
-        // <div className="text-gray-500 px-5 pt-5 pb-36 text-xs lg:text-sm border-r border-gray-900 h-screen overflow-y-auto sm:max-w-[15rem] lg:max-w-[24rem] hidden md:block">
-        //     <button className="btn">
-        //         <HomeIcon className="h-7 w-7" /> Home
-        //     </button>
-        // </div>
     );
 }
 
@@ -90,7 +116,7 @@ export function SidebarItem({ icon, title, onClick }: ISidebarItemProps) {
             onClick={() => onClick && onClick()}
             className="flex gap-1 items-center text-neutral  hover:text-accent cursor-pointer space-x-2"
         >
-            {icon} <span>{title}</span>
+            <span>{icon}</span> <span>{title}</span>
         </li>
     );
 }

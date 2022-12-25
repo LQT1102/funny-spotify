@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import "../../public/fonts/font.css";
 import "../../public/styles/globals.scss";
 import MultipleLangWrapper from "../components/base/MultipleLangWrapper";
+import ContextProviderWrapper from "../contexts/ContextProviderWrapper";
 import store from "../redux/store";
 
 const languages = {
@@ -25,35 +26,37 @@ function MyApp({
     const { locale = "en", defaultLocale = "en" } = router;
     const messages = languages[locale];
     return (
-        <SessionProvider session={session}>
-            <IntlProvider
-                messages={messages}
-                locale={locale}
-                defaultLocale={defaultLocale}
-            >
-                <Provider store={store}>
-                    <MultipleLangWrapper>
-                        <Head>
-                            <title>Funny spotify</title>
-                            <link
-                                rel="shortcut icon"
-                                href="/assets/favicon.png"
+        <SessionProvider session={session} refetchOnWindowFocus={false}>
+            <ContextProviderWrapper>
+                <IntlProvider
+                    messages={messages}
+                    locale={locale}
+                    defaultLocale={defaultLocale}
+                >
+                    <Provider store={store}>
+                        <MultipleLangWrapper>
+                            <Head>
+                                <title>Funny spotify</title>
+                                <link
+                                    rel="shortcut icon"
+                                    href="/assets/favicon.png"
+                                />
+                            </Head>
+                            <NextNProgress
+                                color={"#F1AE71"}
+                                startPosition={0.3}
+                                stopDelayMs={200}
+                                height={3}
+                                showOnShallow={true}
                             />
-                        </Head>
-                        <NextNProgress
-                            color={"#F1AE71"}
-                            startPosition={0.3}
-                            stopDelayMs={200}
-                            height={3}
-                            showOnShallow={true}
-                        />
 
-                        <Layout>
-                            <Component {...pageProps} />
-                        </Layout>
-                    </MultipleLangWrapper>
-                </Provider>
-            </IntlProvider>
+                            <Layout>
+                                <Component {...pageProps} />
+                            </Layout>
+                        </MultipleLangWrapper>
+                    </Provider>
+                </IntlProvider>
+            </ContextProviderWrapper>
         </SessionProvider>
     );
 }
